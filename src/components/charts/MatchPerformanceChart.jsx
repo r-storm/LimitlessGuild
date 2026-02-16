@@ -6,7 +6,7 @@ export default function MatchPerformanceChart() {
   const summaries = useMemo(() => getAllGameSummaries(), []);
 
   const data = {
-    labels: summaries.map(s => `Match ${s.gameNum}`),
+    labels: summaries.map(s => `Match ${s.gameNum} (${s.date.split(' ')[0]})`),
     datasets: [
       {
         label: 'Kills',

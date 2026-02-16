@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { formatNumber } from '../utils/formatters';
 
-export default function SortableTable({ columns, data, searchQuery, onPlayerClick }) {
+export default function SortableTable({ columns, data, searchQuery, onPlayerClick, badges }) {
   const [sortKey, setSortKey] = useState(null);
   const [sortAsc, setSortAsc] = useState(false);
 
@@ -71,12 +71,23 @@ export default function SortableTable({ columns, data, searchQuery, onPlayerClic
                   }`}
                 >
                   {col.key === 'name' ? (
-                    <button
-                      onClick={() => onPlayerClick(row.name)}
-                      className="text-violet-400 hover:text-violet-300 hover:underline transition-colors font-sans font-medium cursor-pointer bg-transparent border-none p-0 text-sm text-left"
-                    >
-                      {row.name}
-                    </button>
+                    <span className="inline-flex items-center gap-1.5 flex-wrap">
+                      <button
+                        onClick={() => onPlayerClick(row.name)}
+                        className="text-violet-400 hover:text-violet-300 hover:underline transition-colors font-sans font-medium cursor-pointer bg-transparent border-none p-0 text-sm text-left"
+                      >
+                        {row.name}
+                      </button>
+                      {badges?.[row.name]?.map(b => (
+                        <span
+                          key={b.label}
+                          className={`${b.bg} ${b.text} text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full border border-current/20`}
+                          style={{ boxShadow: b.glow }}
+                        >
+                          {b.label}
+                        </span>
+                      ))}
+                    </span>
                   ) : col.format ? (
                     col.format(row[col.key])
                   ) : typeof row[col.key] === 'number' ? (

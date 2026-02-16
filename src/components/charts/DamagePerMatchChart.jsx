@@ -7,7 +7,7 @@ export default function DamagePerMatchChart() {
   const summaries = useMemo(() => getAllGameSummaries(), []);
 
   const data = {
-    labels: summaries.map(s => `Match ${s.gameNum}`),
+    labels: summaries.map(s => `Match ${s.gameNum} (${s.date.split(' ')[0]})`),
     datasets: [
       {
         label: 'Team Damage',
