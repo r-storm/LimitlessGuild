@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { formatNumber } from '../utils/formatters';
+import ClassIcon from './ClassIcon';
 
 export default function SortableTable({ columns, data, searchQuery, onPlayerClick, badges }) {
   const [sortKey, setSortKey] = useState(null);
@@ -72,6 +73,7 @@ export default function SortableTable({ columns, data, searchQuery, onPlayerClic
                 >
                   {col.key === 'name' ? (
                     <span className="inline-flex items-center gap-1.5 flex-wrap">
+                      <ClassIcon playerName={row.name} size={16} />
                       <button
                         onClick={() => onPlayerClick(row.name)}
                         className="text-violet-400 hover:text-violet-300 hover:underline transition-colors font-sans font-medium cursor-pointer bg-transparent border-none p-0 text-sm text-left"

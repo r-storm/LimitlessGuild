@@ -1,5 +1,6 @@
 import { formatNumber } from '../utils/formatters';
 import classNames from '../utils/classNames';
+import ClassIcon from './ClassIcon';
 
 const podiumConfig = [
   {
@@ -104,6 +105,7 @@ function CompactLayout({ title, items, onPlayerClick }) {
                     {i + 1}
                   </span>
                 )}
+                <ClassIcon playerName={item.name} size={16} />
                 <button
                   onClick={() => onPlayerClick(item.name)}
                   className={classNames(
@@ -171,15 +173,18 @@ function PodiumCard({ item, index, config, title, onPlayerClick }) {
         </div>
 
         {/* Player name */}
-        <button
-          onClick={() => onPlayerClick(item.name)}
-          className={classNames(
-            'text-sm font-semibold hover:underline transition-colors cursor-pointer bg-transparent border-none p-0 text-center',
-            config.nameColor,
-          )}
-        >
-          {item.name}
-        </button>
+        <div className="flex items-center justify-center gap-1">
+          <ClassIcon playerName={item.name} size={18} />
+          <button
+            onClick={() => onPlayerClick(item.name)}
+            className={classNames(
+              'text-sm font-semibold hover:underline transition-colors cursor-pointer bg-transparent border-none p-0 text-center',
+              config.nameColor,
+            )}
+          >
+            {item.name}
+          </button>
+        </div>
 
         {/* Stat value */}
         <span className={classNames(
@@ -243,6 +248,7 @@ function FullLayout({ title, items, onPlayerClick }) {
                     <span className="flex items-center justify-center h-7 w-7 rounded-full bg-[var(--color-bg-elevated)] text-[10px] font-semibold text-[var(--color-text-secondary)] shrink-0">
                       {initial}
                     </span>
+                    <ClassIcon playerName={item.name} size={16} />
                     <button
                       onClick={() => onPlayerClick(item.name)}
                       className="text-sm text-violet-400 hover:text-violet-300 hover:underline font-medium transition-colors cursor-pointer bg-transparent border-none p-0 text-left"

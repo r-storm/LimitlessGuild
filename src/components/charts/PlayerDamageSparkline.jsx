@@ -45,7 +45,7 @@ export function PlayerSparkline({ values, color = '139, 92, 246' }) {
   };
 
   return (
-    <div className="h-16">
+    <div className="h-24">
       <Line data={data} options={options} />
     </div>
   );

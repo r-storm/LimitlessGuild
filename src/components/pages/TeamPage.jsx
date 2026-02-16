@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import PageHeader from '../layout/PageHeader';
 import { getAllPlayers } from '../../data/dataUtils';
 import classNames from '../../utils/classNames';
+import ClassIcon from '../ClassIcon';
 
 const badgeCategories = [
   { key: 'total_damage', label: 'Damage Leader', bg: 'bg-violet-500/15', text: 'text-violet-400', glow: 'var(--glow-violet)' },
@@ -89,6 +90,7 @@ export default function TeamPage({ searchQuery, onPlayerClick }) {
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-violet-400 text-white font-bold text-sm shrink-0">
               {player.name.charAt(0).toUpperCase()}
             </div>
+            <ClassIcon playerName={player.name} size={18} />
             <span className="text-sm font-semibold text-[var(--color-text-primary)] truncate shrink-0">
               {player.name}
             </span>
