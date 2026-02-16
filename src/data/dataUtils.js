@@ -149,3 +149,11 @@ export function getPlayerGameDamage(name) {
     .sort((a, b) => a.game_num - b.game_num)
     .map(g => g.damage);
 }
+
+export function getPlayerGameStat(name, stat) {
+  const player = playerStats[name];
+  if (!player) return [];
+  return [...player.games]
+    .sort((a, b) => a.game_num - b.game_num)
+    .map(g => g[stat]);
+}

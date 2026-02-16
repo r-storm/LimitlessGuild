@@ -1,19 +1,25 @@
 import { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
-import { getPlayerGameDamage } from '../../data/dataUtils';
+import { getPlayerGameDamage, getPlayerGameStat } from '../../data/dataUtils';
 
 export default function PlayerDamageSparkline({ playerName }) {
   const damages = useMemo(() => getPlayerGameDamage(playerName), [playerName]);
 
   if (damages.length < 2) return null;
 
+  return <PlayerSparkline values={damages} color="139, 92, 246" />;
+}
+
+export function PlayerSparkline({ values, color = '139, 92, 246' }) {
+  if (!values || values.length < 2) return null;
+
   const data = {
-    labels: damages.map((_, i) => i + 1),
+    labels: values.map((_, i) => i + 1),
     datasets: [
       {
-        data: damages,
-        borderColor: 'rgb(139, 92, 246)',
-        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+        data: values,
+        borderColor: `rgb(${color})`,
+        backgroundColor: `rgba(${color}, 0.1)`,
         fill: true,
         tension: 0.4,
         pointRadius: 0,
@@ -43,4 +49,9 @@ export default function PlayerDamageSparkline({ playerName }) {
       <Line data={data} options={options} />
     </div>
   );
+}
+
+export function PlayerStatSparkline({ playerName, stat, color }) {
+  const values = useMemo(() => getPlayerGameStat(playerName, stat), [playerName, stat]);
+  return <PlayerSparkline values={values} color={color} />;
 }

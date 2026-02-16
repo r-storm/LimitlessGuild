@@ -12,8 +12,8 @@ export default function TopDamageChart() {
       {
         label: 'Damage',
         data: summaries.map(s => s.totalDamage),
-        backgroundColor: 'rgba(139, 92, 246, 0.6)',
-        borderColor: 'rgb(139, 92, 246)',
+        backgroundColor: 'rgba(248, 113, 113, 0.6)',
+        borderColor: 'rgb(248, 113, 113)',
         borderWidth: 1,
         borderRadius: { topLeft: 0, topRight: 0, bottomLeft: 6, bottomRight: 6 },
       },
@@ -25,10 +25,17 @@ export default function TopDamageChart() {
         borderWidth: 1,
       },
       {
-        label: 'Siege',
-        data: summaries.map(s => s.totalSiege),
+        label: 'Tank',
+        data: summaries.map(s => s.totalTank),
         backgroundColor: 'rgba(251, 191, 36, 0.6)',
         borderColor: 'rgb(251, 191, 36)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Siege',
+        data: summaries.map(s => s.totalSiege),
+        backgroundColor: 'rgba(148, 163, 184, 0.6)',
+        borderColor: 'rgb(148, 163, 184)',
         borderWidth: 1,
         borderRadius: { topLeft: 6, topRight: 6, bottomLeft: 0, bottomRight: 0 },
       },
@@ -48,7 +55,7 @@ export default function TopDamageChart() {
           label: ctx => `${ctx.dataset.label}: ${formatNumber(ctx.raw)}`,
           afterBody: ctx => {
             const i = ctx[0].dataIndex;
-            const total = summaries[i].totalDamage + summaries[i].totalHealing + summaries[i].totalSiege;
+            const total = summaries[i].totalDamage + summaries[i].totalHealing + summaries[i].totalSiege + summaries[i].totalTank;
             return `Total: ${formatNumber(total)}`;
           },
         },

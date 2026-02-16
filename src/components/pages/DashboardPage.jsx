@@ -13,12 +13,12 @@ export default function DashboardPage({ searchQuery, onPlayerClick }) {
       <OverallStatsBar />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <DamagePerMatchChart />
+        <MatchPerformanceChart />
         <WinLossChart />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <MatchPerformanceChart />
+        <DamagePerMatchChart />
         <TopDamageChart />
       </div>
 

@@ -12,8 +12,8 @@ export default function DamagePerMatchChart() {
       {
         label: 'Damage',
         data: summaries.map(s => s.totalDamage),
-        backgroundColor: 'rgba(139, 92, 246, 0.6)',
-        borderColor: 'rgb(139, 92, 246)',
+        backgroundColor: 'rgba(248, 113, 113, 0.6)',
+        borderColor: 'rgb(248, 113, 113)',
         borderWidth: 1,
         borderRadius: 6,
       },
@@ -28,8 +28,8 @@ export default function DamagePerMatchChart() {
       {
         label: 'Siege',
         data: summaries.map(s => s.totalSiege),
-        backgroundColor: 'rgba(251, 191, 36, 0.6)',
-        borderColor: 'rgb(251, 191, 36)',
+        backgroundColor: 'rgba(148, 163, 184, 0.6)',
+        borderColor: 'rgb(148, 163, 184)',
         borderWidth: 1,
         borderRadius: 6,
       },
