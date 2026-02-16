@@ -1,6 +1,6 @@
 # LimitlessGuild
 
-Static guild war stats dashboard for a gaming guild. Deployed to GitHub Pages.
+[] Static guild war stats dashboard for a gaming guild. Deployed to GitHub Pages.
 
 ## Agent Usage
 
