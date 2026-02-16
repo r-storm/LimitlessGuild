@@ -12,10 +12,10 @@ import classNames from '../../utils/classNames';
 
 const tabs = [
   { key: 'avgDamage', label: 'Avg Damage', getter: () => getTopAvgDamage(Infinity) },
-  { key: 'totalKills', label: 'Total Kills', getter: () => getTopTotalKills(Infinity) },
-  { key: 'totalAssists', label: 'Total Assists', getter: () => getTopTotalAssists(Infinity) },
   { key: 'avgHealing', label: 'Avg Healing', getter: () => getTopAvgHealers(Infinity) },
   { key: 'avgSiege', label: 'Avg Siege', getter: () => getTopAvgSiege(Infinity) },
+  { key: 'totalKills', label: 'Total Kills', getter: () => getTopTotalKills(Infinity) },
+  { key: 'totalAssists', label: 'Total Assists', getter: () => getTopTotalAssists(Infinity) },
 ];
 
 export default function RankingsPage({ onPlayerClick }) {
@@ -45,11 +45,13 @@ export default function RankingsPage({ onPlayerClick }) {
         ))}
       </div>
 
-      <RankingCard
-        title={activeConfig.label}
-        items={items}
-        onPlayerClick={onPlayerClick}
-      />
+      <div key={activeTab} className="animate-fade-in">
+        <RankingCard
+          title={activeConfig.label}
+          items={items}
+          onPlayerClick={onPlayerClick}
+        />
+      </div>
     </div>
   );
 }
