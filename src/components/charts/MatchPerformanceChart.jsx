@@ -47,7 +47,7 @@ export default function MatchPerformanceChart() {
     scales: {
       y: {
         beginAtZero: true,
-        grid: { color: 'rgba(30, 30, 42, 0.3)' },
+        grid: { color: 'rgba(30, 30, 42, 0.3)', z: -1 },
       },
       x: {
         grid: { display: false },

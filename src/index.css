@@ -22,12 +22,12 @@
 
   --color-border: #1E1E2A;
 
-  --glow-violet: 0 0 20px rgba(139, 92, 246, 0.15);
-  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.15);
-  --glow-purple: 0 0 20px rgba(167, 139, 250, 0.15);
-  --glow-amber: 0 0 20px rgba(251, 191, 36, 0.15);
-  --glow-red: 0 0 20px rgba(248, 113, 113, 0.15);
-  --glow-green: 0 0 20px rgba(52, 211, 153, 0.15);
+  --glow-violet: 0 0 6px rgba(139, 92, 246, 0.10);
+  --glow-blue: 0 0 6px rgba(59, 130, 246, 0.10);
+  --glow-purple: 0 0 6px rgba(167, 139, 250, 0.10);
+  --glow-amber: 0 0 6px rgba(251, 191, 36, 0.10);
+  --glow-red: 0 0 6px rgba(248, 113, 113, 0.10);
+  --glow-green: 0 0 6px rgba(52, 211, 153, 0.10);
 }
 
 /* ── Glass Utility Classes ── */

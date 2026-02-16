@@ -66,7 +66,7 @@ export default function TopDamageChart() {
         stacked: true,
         beginAtZero: true,
         ticks: { callback: v => formatNumber(v) },
-        grid: { color: 'rgba(30, 30, 42, 0.3)' },
+        grid: { color: 'rgba(30, 30, 42, 0.3)', z: -1 },
       },
       x: {
         stacked: true,
