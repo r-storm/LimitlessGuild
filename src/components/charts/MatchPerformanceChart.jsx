@@ -6,7 +6,7 @@ export default function MatchPerformanceChart() {
   const summaries = useMemo(() => getAllGameSummaries(), []);
 
   const data = {
-    labels: summaries.map(s => `Match ${s.gameNum} (${s.date.split(' ')[0]})`),
+    labels: summaries.map(s => `Match ${s.gameNum} (${s.result === 'win' ? 'W' : 'L'})`),
     datasets: [
       {
         label: 'Kills',
@@ -37,6 +37,11 @@ export default function MatchPerformanceChart() {
     plugins: {
       legend: {
         position: 'bottom',
+      },
+      tooltip: {
+        callbacks: {
+          title: ctx => `${ctx[0].label} — ${summaries[ctx[0].dataIndex].date}`,
+        },
       },
     },
     scales: {

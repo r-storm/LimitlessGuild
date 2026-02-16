@@ -21,6 +21,8 @@ export function getGameSummary(gameNum) {
   const totalKills = players.reduce((s, p) => s + p.defeated, 0);
   const totalDeaths = players.reduce((s, p) => s + p.deaths, 0);
   const totalHealing = players.reduce((s, p) => s + p.heal, 0);
+  const totalSiege = players.reduce((s, p) => s + p.siege_damage, 0);
+  const totalTank = players.reduce((s, p) => s + p.tank, 0);
   return {
     ...def,
     playerCount: players.length,
@@ -28,6 +30,8 @@ export function getGameSummary(gameNum) {
     totalKills,
     totalDeaths,
     totalHealing,
+    totalSiege,
+    totalTank,
   };
 }
 

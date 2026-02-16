@@ -7,17 +7,29 @@ export default function DamagePerMatchChart() {
   const summaries = useMemo(() => getAllGameSummaries(), []);
 
   const data = {
-    labels: summaries.map(s => `Match ${s.gameNum} (${s.date.split(' ')[0]})`),
+    labels: summaries.map(s => `Match ${s.gameNum} (${s.result === 'win' ? 'W' : 'L'})`),
     datasets: [
       {
-        label: 'Team Damage',
+        label: 'Damage',
         data: summaries.map(s => s.totalDamage),
-        backgroundColor: summaries.map(s =>
-          s.result === 'win' ? 'rgba(139, 92, 246, 0.7)' : 'rgba(100, 116, 139, 0.5)',
-        ),
-        borderColor: summaries.map(s =>
-          s.result === 'win' ? 'rgb(139, 92, 246)' : 'rgb(100, 116, 139)',
-        ),
+        backgroundColor: 'rgba(139, 92, 246, 0.6)',
+        borderColor: 'rgb(139, 92, 246)',
+        borderWidth: 1,
+        borderRadius: 6,
+      },
+      {
+        label: 'Healing',
+        data: summaries.map(s => s.totalHealing),
+        backgroundColor: 'rgba(52, 211, 153, 0.6)',
+        borderColor: 'rgb(52, 211, 153)',
+        borderWidth: 1,
+        borderRadius: 6,
+      },
+      {
+        label: 'Siege',
+        data: summaries.map(s => s.totalSiege),
+        backgroundColor: 'rgba(251, 191, 36, 0.6)',
+        borderColor: 'rgb(251, 191, 36)',
         borderWidth: 1,
         borderRadius: 6,
       },
@@ -28,11 +40,13 @@ export default function DamagePerMatchChart() {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false },
+      legend: {
+        position: 'bottom',
+      },
       tooltip: {
         callbacks: {
-          label: ctx => `Damage: ${formatNumber(ctx.raw)}`,
-          afterLabel: ctx => summaries[ctx.dataIndex].result === 'win' ? 'Won' : 'Lost',
+          title: ctx => `${ctx[0].label} — ${summaries[ctx[0].dataIndex].date}`,
+          label: ctx => `${ctx.dataset.label}: ${formatNumber(ctx.raw)}`,
         },
       },
     },
@@ -51,7 +65,7 @@ export default function DamagePerMatchChart() {
   return (
     <div className="rounded-xl glass-adaptive border border-[var(--color-border)] p-5">
       <h3 className="text-sm font-semibold text-[var(--color-text-secondary)] uppercase tracking-wider mb-4">
-        Team Damage Per Match
+        Damage, Healing & Siege Per Match
       </h3>
       <div className="h-64">
         <Bar data={data} options={options} />

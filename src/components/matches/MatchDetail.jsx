@@ -29,6 +29,13 @@ export default function MatchDetail({ gameNum, searchQuery, onPlayerClick }) {
           }`}>
             {summary.result}
           </span>
+          <span className={`px-3 py-1 rounded-full text-sm font-bold uppercase ${
+            summary.type === 'league'
+              ? 'bg-blue-400/15 text-blue-400 border border-blue-400/30'
+              : 'bg-amber-400/15 text-amber-400 border border-amber-400/30'
+          }`}>
+            {summary.type}
+          </span>
           <span className="text-[var(--color-text-secondary)] text-sm">Match {summary.gameNum} &middot; {summary.date}</span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
