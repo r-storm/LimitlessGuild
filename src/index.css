@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* ── Design Tokens ── */
+:root {
+  /* OLED-dark palette */
+  --color-bg-base: #050507;
+  --color-bg-surface: #0A0A0F;
+  --color-bg-card: #121218;
+  --color-bg-elevated: #1A1A24;
+  --color-bg-card-hover: #1A1A24;
+
+  --color-text-primary: #EEEEF0;
+  --color-text-secondary: #8B8B9E;
+  --color-text-muted: #55556A;
+
+  --color-accent-blue: #3B82F6;
+  --color-accent-violet: #8B5CF6;
+  --color-accent-purple: #A78BFA;
+  --color-accent-amber: #FBBF24;
+  --color-accent-red: #F87171;
+  --color-accent-green: #34D399;
+
+  --color-border: #1E1E2A;
+
+  --glow-violet: 0 0 20px rgba(139, 92, 246, 0.15);
+  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.15);
+  --glow-purple: 0 0 20px rgba(167, 139, 250, 0.15);
+  --glow-amber: 0 0 20px rgba(251, 191, 36, 0.15);
+  --glow-red: 0 0 20px rgba(248, 113, 113, 0.15);
+  --glow-green: 0 0 20px rgba(52, 211, 153, 0.15);
+}
+
+/* ── Glass Utility Classes ── */
+.glass-adaptive {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background-color: rgba(18, 18, 24, 0.7);
+}
+
+.glass-adaptive-hover {
+  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-adaptive-hover:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+.glass-strong {
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  background-color: rgba(10, 10, 15, 0.85);
+}
+
+.glass-floating {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-adaptive,
+  .glass-strong,
+  .glass-floating {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .glass-adaptive {
+    background-color: rgba(18, 18, 24, 0.95);
+  }
+  .glass-strong {
+    background-color: rgba(10, 10, 15, 0.95);
+  }
+  .glass-floating {
+    background-color: rgba(5, 5, 7, 0.95);
+  }
+  .glass-adaptive-hover:hover {
+    transform: none;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1E1E2A transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
