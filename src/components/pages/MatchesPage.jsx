@@ -4,7 +4,7 @@ import CalendarGrid from '../matches/CalendarGrid';
 import MatchDetail from '../matches/MatchDetail';
 import { getMatchDates, getMatchesByDate } from '../../data/dataUtils';
 
-export default function MatchesPage({ searchQuery, onPlayerClick }) {
+export default function MatchesPage({ onPlayerClick }) {
   const matchDates = useMemo(() => getMatchDates(), []);
 
   const defaultDate = useMemo(() => {
@@ -55,7 +55,6 @@ export default function MatchesPage({ searchQuery, onPlayerClick }) {
                 <MatchDetail
                   key={m.gameNum}
                   gameNum={m.gameNum}
-                  searchQuery={searchQuery}
                   onPlayerClick={onPlayerClick}
                 />
               ))}

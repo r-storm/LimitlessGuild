@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './components/layout/Sidebar';
 import TopBar from './components/layout/TopBar';
 
@@ -7,12 +7,24 @@ import MatchesPage from './components/pages/MatchesPage';
 import RankingsPage from './components/pages/RankingsPage';
 import TeamPage from './components/pages/TeamPage';
 import PlayerModal from './components/PlayerModal';
+import SearchPalette from './components/SearchPalette';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('dashboard');
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(prev => !prev);
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="flex h-screen bg-[var(--color-bg-base)]">
@@ -26,21 +38,18 @@ function App() {
       <div className="flex flex-1 flex-col lg:pl-64">
         <TopBar
           onMenuClick={() => setMobileOpen(true)}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
+          onSearchClick={() => setSearchOpen(true)}
         />
 
         <main className="flex-1 overflow-y-auto">
           <div className="px-4 py-6 sm:px-6 lg:px-8">
             {currentPage === 'dashboard' && (
               <DashboardPage
-                searchQuery={searchQuery}
                 onPlayerClick={setSelectedPlayer}
               />
             )}
             {currentPage === 'matches' && (
               <MatchesPage
-                searchQuery={searchQuery}
                 onPlayerClick={setSelectedPlayer}
               />
             )}
@@ -51,13 +60,18 @@ function App() {
             )}
             {currentPage === 'team' && (
               <TeamPage
-                searchQuery={searchQuery}
                 onPlayerClick={setSelectedPlayer}
               />
             )}
           </div>
         </main>
       </div>
+
+      <SearchPalette
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        onPlayerSelect={setSelectedPlayer}
+      />
 
       {selectedPlayer && (
         <PlayerModal

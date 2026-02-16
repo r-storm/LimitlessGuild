@@ -23,7 +23,7 @@ const badgeCategories = [
   { key: 'total_siege', label: 'Top Siege Master', tableLabel: 'SIEGE', bg: 'bg-amber-500/15', text: 'text-amber-400', glow: 'var(--glow-amber)' },
 ];
 
-export default function AllPlayersTable({ searchQuery, onPlayerClick }) {
+export default function AllPlayersTable({ onPlayerClick }) {
   const data = useMemo(() => getAllPlayersSorted(), []);
 
   const badges = useMemo(() => {
@@ -47,7 +47,6 @@ export default function AllPlayersTable({ searchQuery, onPlayerClick }) {
       <SortableTable
         columns={columns}
         data={data}
-        searchQuery={searchQuery}
         onPlayerClick={onPlayerClick}
         badges={badges}
       />

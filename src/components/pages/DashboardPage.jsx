@@ -6,7 +6,7 @@ import WinLossChart from '../charts/WinLossChart';
 import TopDamageChart from '../charts/TopDamageChart';
 import MatchPerformanceChart from '../charts/MatchPerformanceChart';
 
-export default function DashboardPage({ searchQuery, onPlayerClick }) {
+export default function DashboardPage({ onPlayerClick }) {
   return (
     <div className="space-y-6">
       <PageHeader title="Dashboard" subtitle="Guild war performance overview" />
@@ -22,7 +22,7 @@ export default function DashboardPage({ searchQuery, onPlayerClick }) {
         <TopDamageChart />
       </div>
 
-      <AllPlayersTable searchQuery={searchQuery} onPlayerClick={onPlayerClick} />
+      <AllPlayersTable onPlayerClick={onPlayerClick} />
     </div>
   );
 }

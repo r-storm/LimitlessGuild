@@ -14,7 +14,7 @@ const columns = [
   { key: 'siege_damage', label: 'Siege', align: 'right' },
 ];
 
-export default function MatchDetail({ gameNum, searchQuery, onPlayerClick }) {
+export default function MatchDetail({ gameNum, onPlayerClick }) {
   const summary = useMemo(() => getGameSummary(gameNum), [gameNum]);
   const players = useMemo(() => getGamePlayers(gameNum), [gameNum]);
 
@@ -48,7 +48,6 @@ export default function MatchDetail({ gameNum, searchQuery, onPlayerClick }) {
       <SortableTable
         columns={columns}
         data={players}
-        searchQuery={searchQuery}
         onPlayerClick={onPlayerClick}
       />
     </div>

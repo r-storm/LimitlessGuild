@@ -13,7 +13,7 @@ const badgeCategories = [
   { key: 'total_siege', label: 'Top Siege Master', bg: 'bg-amber-500/15', text: 'text-amber-400', glow: 'var(--glow-amber)' },
 ];
 
-export default function TeamPage({ searchQuery, onPlayerClick }) {
+export default function TeamPage({ onPlayerClick }) {
   const [matchFilter, setMatchFilter] = useState(null);
   const allPlayers = useMemo(() => getAllPlayers(), []);
 
@@ -39,15 +39,11 @@ export default function TeamPage({ searchQuery, onPlayerClick }) {
 
   const players = useMemo(() => {
     let filtered = allPlayers;
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(q));
-    }
     if (matchFilter !== null) {
       filtered = filtered.filter(p => p.games_played === matchFilter);
     }
     return [...filtered].sort((a, b) => a.name.localeCompare(b.name));
-  }, [allPlayers, searchQuery, matchFilter]);
+  }, [allPlayers, matchFilter]);
 
   return (
     <div>

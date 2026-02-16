@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { formatNumber } from '../utils/formatters';
 import ClassIcon from './ClassIcon';
 
-export default function SortableTable({ columns, data, searchQuery, onPlayerClick, badges }) {
+export default function SortableTable({ columns, data, onPlayerClick, badges }) {
   const [sortKey, setSortKey] = useState(null);
   const [sortAsc, setSortAsc] = useState(false);
 
@@ -15,15 +15,9 @@ export default function SortableTable({ columns, data, searchQuery, onPlayerClic
     }
   }
 
-  const filtered = useMemo(() => {
-    if (!searchQuery) return data;
-    const q = searchQuery.toLowerCase();
-    return data.filter(row => row.name.toLowerCase().includes(q));
-  }, [data, searchQuery]);
-
   const sorted = useMemo(() => {
-    if (!sortKey) return filtered;
-    return [...filtered].sort((a, b) => {
+    if (!sortKey) return data;
+    return [...data].sort((a, b) => {
       const av = a[sortKey];
       const bv = b[sortKey];
       if (typeof av === 'string') {
@@ -31,7 +25,7 @@ export default function SortableTable({ columns, data, searchQuery, onPlayerClic
       }
       return sortAsc ? av - bv : bv - av;
     });
-  }, [filtered, sortKey, sortAsc]);
+  }, [data, sortKey, sortAsc]);
 
   return (
     <div className="overflow-x-auto rounded-xl border border-[var(--color-border)]">
